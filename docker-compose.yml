@@ -7,6 +7,8 @@ services:
       - db
     ports:
       - "8069:8069"
+    tty: true
+    command: -d db -u estate
     volumes:
       - odoo-web-data:/var/lib/odoo
       - ./config:/etc/odoo
