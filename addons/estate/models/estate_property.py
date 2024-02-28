@@ -11,16 +11,18 @@ class RealEstateProperty(models.Model):
     description = fields.Text()
     postcode = fields.Char()
     date_availability = fields.Date(
-        copy=False, default=lambda self: fields.Date.today() + timedelta(days=90)
+        copy=False,
+        default=lambda self: fields.Date.today() + timedelta(days=90),
+        string="Available From",
     )
     expected_price = fields.Float(required=True)
     selling_price = fields.Float(readonly=True, copy=False)
     bedrooms = fields.Integer(default=2)
-    living_area = fields.Integer()
+    living_area = fields.Integer(string="Living Area (sqm)")
     facades = fields.Integer()
     garage = fields.Boolean()
     garden = fields.Boolean()
-    garden_area = fields.Integer()
+    garden_area = fields.Integer(string="Garden Area (sqm)")
     garden_orientation = fields.Selection(
         selection=[
             ("north", "North"),

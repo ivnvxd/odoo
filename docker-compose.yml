@@ -1,4 +1,4 @@
-version: '3.1'
+version: "3.1"
 
 services:
   web:
@@ -8,7 +8,7 @@ services:
     ports:
       - "8069:8069"
     tty: true
-    command: -d db -u estate
+    command: -d db -u estate --dev xml
     volumes:
       - odoo-web-data:/var/lib/odoo
       - ./config:/etc/odoo
