@@ -1,6 +1,11 @@
 {
-    'name': 'Real Estate',
-    'depends': ['base',],
-    'application': True,
-    'license': 'LGPL-3',
+    "name": "Real Estate",
+    "depends": [
+        "base",
+    ],
+    "data": [
+        "security/ir.model.access.csv",
+    ],
+    "application": True,
+    "license": "LGPL-3",
 }
