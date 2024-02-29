@@ -47,3 +47,4 @@ class RealEstateProperty(models.Model):
     property_type_id = fields.Many2one("estate.property.type", string="Property Type")
     buyer_id = fields.Many2one("res.partner", string="Buyer")
     salesman_id = fields.Many2one("res.users", string="Salesman")
+    tag_ids = fields.Many2many("estate.property.tag", string="Tags")
