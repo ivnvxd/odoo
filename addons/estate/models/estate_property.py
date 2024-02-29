@@ -44,3 +44,4 @@ class RealEstateProperty(models.Model):
         required=True,
         copy=False,
     )
+    property_type_id = fields.Many2one("estate.property.type", string="Property Type")
