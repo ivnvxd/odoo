@@ -1,6 +1,6 @@
 from datetime import timedelta
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class RealEstateProperty(models.Model):
@@ -49,3 +49,11 @@ class RealEstateProperty(models.Model):
     salesman_id = fields.Many2one("res.users", string="Salesman")
     tag_ids = fields.Many2many("estate.property.tag", string="Tags")
     offer_ids = fields.One2many("estate.property.offer", "property_id")
+    total_area = fields.Integer(
+        compute="_compute_total_area", string="Total Area (sqm)"
+    )
+
+    @api.depends("living_area", "garden_area")
+    def _compute_total_area(self):
+        for record in self:
+            record.total_area = record.living_area + record.garden_area
