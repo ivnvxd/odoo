@@ -1,7 +1,8 @@
 from datetime import timedelta
 
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
+from odoo.tools import float_compare, float_is_zero
 
 
 class RealEstateProperty(models.Model):
@@ -100,3 +101,18 @@ class RealEstateProperty(models.Model):
             _("The selling price must be positive"),
         ),
     ]
+
+    @api.constrains("expected_price", "selling_price")
+    def _check_selling_price(self):
+        for record in self:
+            if not float_is_zero(record.selling_price, precision_digits=2):
+                min_price = record.expected_price * 0.9
+                if (
+                    float_compare(record.selling_price, min_price, precision_digits=2)
+                    == -1
+                ):
+                    raise ValidationError(
+                        _(
+                            "Selling price must be at least 90% of the expected price. You must reduce the expected price if you want to accept this offer."
+                        )
+                    )
