@@ -87,3 +87,16 @@ class RealEstateProperty(models.Model):
         else:
             self.state = "canceled"
         return True
+
+    _sql_constraints = [
+        (
+            "check_expected_price",
+            "CHECK(expected_price > 0)",
+            _("The expected price must be positive"),
+        ),
+        (
+            "check_selling_price",
+            "CHECK(selling_price >= 0)",
+            _("The selling price must be positive"),
+        ),
+    ]
