@@ -4,6 +4,7 @@ from odoo import _, fields, models
 class RealEstatePropertyType(models.Model):
     _name = "estate.property.type"
     _description = "Real Estate Property Type"
+    _order = "name"
 
     name = fields.Char(required=True)
 
@@ -12,3 +13,4 @@ class RealEstatePropertyType(models.Model):
     ]
 
     property_ids = fields.One2many("estate.property", "property_type_id")
+    sequence = fields.Integer(default=1)
