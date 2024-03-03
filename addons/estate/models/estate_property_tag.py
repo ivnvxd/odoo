@@ -11,3 +11,5 @@ class RealEstatePropertyTag(models.Model):
     _sql_constraints = [
         ("name_uniq", "unique (name)", _("Property tag name already exists!")),
     ]
+
+    color = fields.Integer()
