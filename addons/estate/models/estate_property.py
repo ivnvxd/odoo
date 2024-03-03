@@ -9,7 +9,7 @@ class RealEstateProperty(models.Model):
     _name = "estate.property"
     _description = "Real Estate Property"
 
-    name = fields.Char(required=True)
+    name = fields.Char(required=True, string="Title")
     description = fields.Text()
     postcode = fields.Char()
     date_availability = fields.Date(
@@ -45,6 +45,7 @@ class RealEstateProperty(models.Model):
         default="new",
         required=True,
         copy=False,
+        string="Status",
     )
     property_type_id = fields.Many2one("estate.property.type", string="Property Type")
     buyer_id = fields.Many2one("res.partner", string="Buyer")

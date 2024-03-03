@@ -10,3 +10,5 @@ class RealEstatePropertyType(models.Model):
     _sql_constraints = [
         ("name_uniq", "unique (name)", _("Property type name already exists!")),
     ]
+
+    property_ids = fields.One2many("estate.property", "property_type_id")
