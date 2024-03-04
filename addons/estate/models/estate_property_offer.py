@@ -75,3 +75,17 @@ class RealEstatePropertyOffer(models.Model):
     property_type_id = fields.Many2one(
         related="property_id.property_type_id", store=True
     )
+
+    @api.model
+    def create(self, vals):
+        property_id = self.env["estate.property"].browse(vals["property_id"])
+        property_id.state = "offer_received"
+
+        highest_offer = self.env["estate.property.offer"].search(
+            [("property_id", "=", vals["property_id"])], order="price desc", limit=1
+        )
+
+        if highest_offer and highest_offer.price > vals.get("price", 0):
+            raise UserError(f"The offer must be higher than {highest_offer.price}")
+
+        return super().create(vals)
