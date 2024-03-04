@@ -71,3 +71,7 @@ class RealEstatePropertyOffer(models.Model):
             _("The price of the offer must be positive."),
         ),
     ]
+
+    property_type_id = fields.Many2one(
+        related="property_id.property_type_id", store=True
+    )
