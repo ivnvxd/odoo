@@ -6,6 +6,8 @@
             hello world
             <Counter/>
             <Counter/>
+            <Card title="'card 1'" content="value1"/>
+            <Card title="'card 2'" content="value2"/>
         </div>
     </t>
 
